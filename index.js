@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from "body-parser"
 import mongoose from 'mongoose'
 import "dotenv/config"
-import bookRouter from './API/router/books'
+import myRouter from './API/router/routes'
 
 
 const PORT = process.env.PORT
@@ -15,7 +15,8 @@ mongoose.connect( url, { useNewUrlParser: true,  useUnifiedTopology: true}).then
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:false}))
     
-    app.use('/books', bookRouter)
+    //app.use('/books', bookRouter)
+    app.use('/api/v1', myRouter)
     
     app.listen( PORT, ()=> {
         console.log(`server is running on ${PORT}...`)
