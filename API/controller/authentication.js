@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 
-import Users from '../modals/userModal';
+import Users from '../models/userModal';
 import {loginSchema, signupSchema} from '../helper/validation'
 
 
