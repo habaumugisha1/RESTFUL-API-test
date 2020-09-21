@@ -87,12 +87,13 @@ describe('Authentication', () => {
                 .send(damyData.signup)
                 .end((err, res) => {
                     should.not.exist(err);
-                    res.should.have.status(201);
+                    res.should.have.status(409);
                     res.type.should.equal('application/json');
                 
+                 done();
                 })
 
-                done();
+               
 
         });
 

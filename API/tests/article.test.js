@@ -26,10 +26,10 @@ describe('Article', () => {
                 .end((err, res) => {
                     console.log(err)
                     res.should.have.status(403);
-                
+                done();
 
                 })
-                done();
+                // done();
         });
         it('It should not create article if is no token', (done) =>{
             
@@ -76,9 +76,9 @@ describe('Article', () => {
                 .end((err, res) => {
                     console.log(err)
                     res.should.have.status(400);
-                
+                done();
             })
-            done();
+            // done();
         });
         
         // it('It should create article', (done) =>{
@@ -105,9 +105,9 @@ describe('Article', () => {
                     console.log(err)
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                
-                });
                 done();
+                });
+                // done();
         });
         it('it should get a single article by given id', (done)=>{
            const articles = new Articles({title:"mongoDb", articleImage:"gcdhgdshdfbsfbdkjfgsdfgbdkgs", description:"sdfsvfjaserguwergFBSDFSDFBSDHFGSJDF"})
@@ -119,11 +119,11 @@ describe('Article', () => {
                  res.should.have.status(200);
                   res.body.should.be.a('object');
                   res.body.should.have.property('results');
-               
+               done();
                })
                 
            })
-           done();
+        //    done();
         })
 
         it('it should not get a single article when there isn\'t', (done)=>{
@@ -134,9 +134,9 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(404);
-                
+                done();
                });
-            done();
+            // done();
            })
         })
 
@@ -148,11 +148,11 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(401);
-                
+                done();
                });
             
            });
-           done();
+        //    done();
         })
 
          it('it should not update a single article with a given ID if no blog of provided id', (done)=>{
@@ -164,11 +164,11 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(404);
-                
+                done();
                })
                
            });
-           done();
+        //    done();
         })
 
         it('it should not update a single article with a given ID if no blog of provided id', (done)=>{
@@ -180,11 +180,11 @@ describe('Article', () => {
                .attach('articleImage', fs.readFileSync('images/test_image.jpeg'))
                .end((err, res) =>{  
                  res.should.have.status(404);
-                
+                done();
                })
                
            });
-           done()
+        //    done()
         })
 
         it('it should delete a single article with a given ID', (done)=>{
@@ -195,11 +195,11 @@ describe('Article', () => {
                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                .end((err, res) =>{  
                  res.should.have.status(200);
-                
+                done();
                })
                
            });
-           done();
+           
         })
 
         it('it should not delete a single article with a given ID', (done)=>{
@@ -210,11 +210,12 @@ describe('Article', () => {
                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                .end((err, res) =>{  
                  res.should.have.status(404);
-                
+
+               done();
                })
                
            });
-           done()
+           
         })
         
     });
