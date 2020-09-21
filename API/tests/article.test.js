@@ -21,7 +21,7 @@ describe('Article', () => {
                 .set('Authorization', `Bearer ${damyData.userToken}`)
                 .set('Content-Type', 'multipart/form-data')
                 .field('title', 'franklin')
-                .attach('articleImage',fs.readFileSync('/Users/andela/Downloads/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+                .attach('articleImage',fs.readFileSync('/images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((err, res) => {
                     console.log(err)
@@ -39,7 +39,7 @@ describe('Article', () => {
                 .set('Content-Type', 'multipart/form-data')
                 .field('title', 'franklin')
                 .attach('articleImage',
-        fs.readFileSync('/Users/andela/Downloads/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+        fs.readFileSync('/images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((err, res) => {
                     res.should.have.status(400);
@@ -56,7 +56,7 @@ describe('Article', () => {
                 .set('Content-Type', 'multipart/form-data')
                 .field('title', 'franklin')
                 .attach('articleImage',
-        fs.readFileSync('/Users/andela/Downloads/how I get into Andela.jpg'))
+        fs.readFileSync('/images/how I get into Andela.jpg'))
                 .field('description', 'testing files')
                 .end((err, res) => {
                     res.should.have.status(400);
@@ -71,7 +71,7 @@ describe('Article', () => {
                 .post('/api/v1/newArticle')
                 .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                 .set('Content-Type', 'multipart/form-data')
-                .attach('articleImage', fs.readFileSync('/Users/andela/Downloads/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+                .attach('articleImage', fs.readFileSync('/images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((err, res) => {
                     console.log(err)
@@ -87,7 +87,7 @@ describe('Article', () => {
         //         .set('Authorization', `Bearer ${damyData.userAdminToken}`)
         //         .set('Content-Type', 'multipart/form-data')
         //         .field('title', 'franklin')
-        //         .attach('articleImage', fs.readFileSync('/Users/andela/Downloads/test_image.jpeg'))
+        //         .attach('articleImage', fs.readFileSync('/images/test_image.jpeg'))
         //         .field('description', 'testing files')
         //         .end((err, res) => {
         //             res.should.have.status(201);
@@ -168,7 +168,7 @@ describe('Article', () => {
                chai.request(server)
                .put('/api/v1/blogs/' + id + '/edit')
                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
-               .attach('articleImage', fs.readFileSync('/Users/andela/Downloads/test_image.jpeg'))
+               .attach('articleImage', fs.readFileSync('/images/test_image.jpeg'))
                .end((err, res) =>{  
                  res.should.have.status(404);
                 done()
