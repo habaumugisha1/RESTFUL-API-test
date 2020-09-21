@@ -61,9 +61,10 @@ describe('Authentication', () => {
                 .end((err, res) => {
                     res.should.have.status(409);
                 
+                
+                });
                 done();
-                })
-                // .catch( error => console.log(error))
+                
                 
         });
         it('It should not signup if there is hash errors', (done) =>{

@@ -21,7 +21,7 @@ describe('Article', () => {
                 .set('Authorization', `Bearer ${damyData.userToken}`)
                 .set('Content-Type', 'multipart/form-data')
                 .field('title', 'franklin')
-                .attach('articleImage',fs.readFileSync('/images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+                .attach('articleImage',fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((err, res) => {
                     console.log(err)
@@ -39,7 +39,7 @@ describe('Article', () => {
                 .set('Content-Type', 'multipart/form-data')
                 .field('title', 'franklin')
                 .attach('articleImage',
-        fs.readFileSync('/images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+        fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((err, res) => {
                     res.should.have.status(400);
@@ -56,7 +56,7 @@ describe('Article', () => {
                 .set('Content-Type', 'multipart/form-data')
                 .field('title', 'franklin')
                 .attach('articleImage',
-        fs.readFileSync('/images/how I get into Andela.jpg'))
+        fs.readFileSync('images/how I get into Andela.jpg'))
                 .field('description', 'testing files')
                 .end((err, res) => {
                     res.should.have.status(400);
@@ -71,13 +71,14 @@ describe('Article', () => {
                 .post('/api/v1/newArticle')
                 .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                 .set('Content-Type', 'multipart/form-data')
-                .attach('articleImage', fs.readFileSync('/images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+                .attach('articleImage', fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((err, res) => {
                     console.log(err)
                     res.should.have.status(400);
-                done();
+                
             })
+            done();
         });
         
         // it('It should create article', (done) =>{
@@ -87,7 +88,7 @@ describe('Article', () => {
         //         .set('Authorization', `Bearer ${damyData.userAdminToken}`)
         //         .set('Content-Type', 'multipart/form-data')
         //         .field('title', 'franklin')
-        //         .attach('articleImage', fs.readFileSync('/images/test_image.jpeg'))
+        //         .attach('articleImage', fs.readFileSync('images/test_image.jpeg'))
         //         .field('description', 'testing files')
         //         .end((err, res) => {
         //             res.should.have.status(201);
@@ -104,8 +105,9 @@ describe('Article', () => {
                     console.log(err)
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                done();
+                
                 });
+                done();
         });
         it('it should get a single article by given id', (done)=>{
            const articles = new Articles({title:"mongoDb", articleImage:"gcdhgdshdfbsfbdkjfgsdfgbdkgs", description:"sdfsvfjaserguwergFBSDFSDFBSDHFGSJDF"})
@@ -117,9 +119,11 @@ describe('Article', () => {
                  res.should.have.status(200);
                   res.body.should.be.a('object');
                   res.body.should.have.property('results');
-                done()
+               
                })
+                
            })
+           done();
         })
 
         it('it should not get a single article when there isn\'t', (done)=>{
@@ -130,8 +134,9 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(404);
-                done()
-               })
+                
+               });
+            done();
            })
         })
 
@@ -143,9 +148,11 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(401);
-                done()
-               })
-           })
+                
+               });
+            
+           });
+           done();
         })
 
          it('it should not update a single article with a given ID if no blog of provided id', (done)=>{
@@ -157,9 +164,11 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(404);
-                done()
+                
                })
-           })
+               
+           });
+           done();
         })
 
         it('it should not update a single article with a given ID if no blog of provided id', (done)=>{
@@ -168,13 +177,14 @@ describe('Article', () => {
                chai.request(server)
                .put('/api/v1/blogs/' + id + '/edit')
                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
-               .attach('articleImage', fs.readFileSync('/images/test_image.jpeg'))
+               .attach('articleImage', fs.readFileSync('images/test_image.jpeg'))
                .end((err, res) =>{  
                  res.should.have.status(404);
-                done()
+                
                })
                
-           })
+           });
+           done()
         })
 
         it('it should delete a single article with a given ID', (done)=>{
@@ -185,10 +195,11 @@ describe('Article', () => {
                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                .end((err, res) =>{  
                  res.should.have.status(200);
-                done()
+                
                })
                
-           })
+           });
+           done();
         })
 
         it('it should not delete a single article with a given ID', (done)=>{
@@ -199,10 +210,11 @@ describe('Article', () => {
                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                .end((err, res) =>{  
                  res.should.have.status(404);
-                done()
+                
                })
                
-           })
+           });
+           done()
         })
         
     });
