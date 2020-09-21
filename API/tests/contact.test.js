@@ -10,12 +10,6 @@ chai.use(chaiHttp)
 // clea up database
 
 describe('Contacts', () => {
-    // beforeEach( done => {
-    //     Contacts.remove({}, (err) =>{
-        
-    //         done();
-    //     })
-    // })
 
     // testing create contacts message
     describe('/api/v1/newContact', ()=>{
@@ -24,7 +18,6 @@ describe('Contacts', () => {
                 email: "habajeunes2@gmail.com",
                 content :"nice tests"
             }
-            let conta = {}
             chai.request(server)
                 .post('/api/v1/newContact')
                 .send(contact)
@@ -51,7 +44,7 @@ describe('Contacts', () => {
         it('It should create contact message with input data', (done) =>{
             
             let contactData = {
-                name:"ami",
+                name:"ami des jeunes",
                 email: "habajeunes2@gmail.com",
                 content :"nice tests"
             }
