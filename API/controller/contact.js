@@ -23,6 +23,13 @@ class ContactMessage {
             })
         
     }
+
+    // getting all contacts
+    static getContacts(req, res){
+        Contacts.find().exec().then((contacts) =>{
+            return res.status(200).json({status:200, message:"This contacts", data: contacts})
+        })
+    }
 }
 
 export default ContactMessage;
