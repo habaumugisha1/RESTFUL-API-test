@@ -80,22 +80,6 @@ describe('Authentication', () => {
                 done();
         });
         
-        it('It should signup with data', (done) =>{
-        
-            chai.request(server)
-                .post('/api/v1/auth/signup')
-                .send(damyData.signup)
-                .end((err, res) => {
-                    res.should.have.status(409);
-
-                 done();
-                })
-
-               
-
-        });
-
-
         
         
     })
