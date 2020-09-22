@@ -7,7 +7,7 @@ import server from '../../index'
 import damyData from './damyData'
 
 chai.use(chaiHttp)
-const should = chai.should()
+chai.should()
 
 describe('Article', () => {
 
@@ -24,9 +24,8 @@ describe('Article', () => {
                 .attach('articleImage',fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((err, res) => {
-                    console.log(err)
                     res.should.have.status(403);
-                done();
+                done(err);
 
                 })
                 // done();
@@ -43,7 +42,7 @@ describe('Article', () => {
                 .field('description', 'testing files')
                 .end((err, res) => {
                     res.should.have.status(400);
-                done();
+                done(err);
 
                 })
         });
@@ -60,7 +59,7 @@ describe('Article', () => {
                 .field('description', 'testing files')
                 .end((err, res) => {
                     res.should.have.status(400);
-                done();
+                done(err);
 
                 })
         });
@@ -74,9 +73,8 @@ describe('Article', () => {
                 .attach('articleImage', fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((err, res) => {
-                    console.log(err)
                     res.should.have.status(400);
-                done();
+                done(err);
             })
             // done();
         });
@@ -102,10 +100,10 @@ describe('Article', () => {
              chai.request(server)
                 .get('/api/v1/blogs')
                 .end((err, res) => {
-                    console.log(err)
+                    
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                done();
+                done(err);
                 });
                 // done();
         });
@@ -119,7 +117,7 @@ describe('Article', () => {
                  res.should.have.status(200);
                   res.body.should.be.a('object');
                   res.body.should.have.property('results');
-               done();
+               done(err);
                })
                 
            })
@@ -134,7 +132,7 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(404);
-                done();
+                done(err);
                });
             // done();
            })
@@ -148,7 +146,7 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(401);
-                done();
+                done(err);
                });
             
            });
@@ -164,7 +162,7 @@ describe('Article', () => {
                .send(articles)
                .end((err, res) =>{  
                  res.should.have.status(404);
-                done();
+                done(err);
                })
                
            });
@@ -180,7 +178,7 @@ describe('Article', () => {
                .attach('articleImage', fs.readFileSync('images/test_image.jpeg'))
                .end((err, res) =>{  
                  res.should.have.status(404);
-                done();
+                done(err);
                })
                
            });
@@ -195,7 +193,7 @@ describe('Article', () => {
                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                .end((err, res) =>{  
                  res.should.have.status(200);
-                done();
+                done(err);
                })
                
            });
@@ -211,7 +209,7 @@ describe('Article', () => {
                .end((err, res) =>{  
                  res.should.have.status(404);
 
-               done();
+               done(err);
                })
                
            });
