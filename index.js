@@ -1,14 +1,18 @@
 import express from 'express'
 import bodyParser from "body-parser"
 import mongoose from 'mongoose'
+import fileupload from 'express-fileupload'
 import "dotenv/config"
 import myRouter from './API/router/routes'
 
 
 const app = express()
 const PORT = process.env.PORT
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
+
+app.use(fileupload({useTempFiles:true}))
 
 const url = process.env.DB_CONFIG;
 app.use('/api/v1', myRouter)

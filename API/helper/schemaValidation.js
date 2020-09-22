@@ -6,6 +6,11 @@ export default {
             name:joi.string().min(3).required(),
             email:joi.string().email().required(),
             content: joi.string().required()
+        }),
+        article: joi.object().keys({
+          title:joi.string().min(5).required(),
+          articleImage:joi.string(),
+          description:joi.string().required()
         })
        
     },
