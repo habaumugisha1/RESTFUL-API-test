@@ -18,17 +18,17 @@ it("should not create article if no title provided", (done) => {
         done(error)
     })
 })
-it("should not create article if no user is not admin", (done) => {
-    chai.request(app)
-    .post('/api/v1/newArticle')
-    .set('Authorization', `Bearer ${damyData.userToken}`)
-    .send({articleImage:"sdhfhdfsfjasfs",
-    description:"hfajshfdasdfvlajsfv"})
-    .end((error, res) => {
-        expect(res).to.have.status([403]);
-        done(error)
-    })
-})
+// it("should not create article if no user is not admin", (done) => {
+//     chai.request(app)
+//     .post('/api/v1/newArticle')
+//     .set('Authorization', `Bearer ${damyData.userToken}`)
+//     .send({articleImage:"sdhfhdfsfjasfs",
+//     description:"hfajshfdasdfvlajsfv"})
+//     .end((error, res) => {
+//         expect(res).to.have.status([403]);
+//         done(error)
+//     })
+// })
 it("should not create article if no user is no token provided", (done) => {
     chai.request(app)
     .post('/api/v1/newArticle')
@@ -40,7 +40,7 @@ it("should not create article if no user is no token provided", (done) => {
         done(error)
     })
 })
-it('It should not create article if no error', (done) =>{
+it('It should create article', (done) =>{
             
             chai.request(app)
                 .post('/api/v1/newArticle')
@@ -48,7 +48,7 @@ it('It should not create article if no error', (done) =>{
                 .set('Content-Type', 'multipart/form-data')
                 .field('title', 'franklin')
                 .attach('articleImage',
-        fs.readFileSync('images/how I get into Andela.jpg'))
+        fs.readFileSync('images/how I get into Andela.jpg'),'how I get into Andela.jpg')
                 .field('description', 'testing files')
                 .end((error, res) => {
                     expect(res).to.have.status([201])
@@ -113,6 +113,18 @@ it('It should not create article if no error', (done) =>{
                 .end((error, res) => {
                     expect(res).to.have.status([404]);
                     expect(res.body).to.have.property('message');
+                done(error);
+
+                })
+        });
+        it('It should not update a articles if is not exist', (done) =>{
+            
+            chai.request(app)
+                .put('/api/v1/blogs/2/edit')
+                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
+                .end((error, res) => {
+                    expect(res).to.have.status([404]);
+
                 done(error);
 
                 })
