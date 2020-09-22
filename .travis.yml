@@ -9,7 +9,7 @@ install:
 script: 
   - npm test
 
-after_success: npm run 
+after_success: npm run coverage
 
 cache:
   directories:
@@ -18,7 +18,8 @@ cache:
 
 notifications:
   email: false
-  
+sudo: false
+
 services:
   - mongodb
 
