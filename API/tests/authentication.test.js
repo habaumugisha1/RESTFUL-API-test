@@ -86,10 +86,8 @@ describe('Authentication', () => {
                 .post('/api/v1/auth/signup')
                 .send(damyData.signup)
                 .end((err, res) => {
-                    should.not.exist(err);
                     res.should.have.status(409);
-                    res.type.should.equal('application/json');
-                
+
                  done();
                 })
 
