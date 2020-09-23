@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from "body-parser"
 import mongoose from 'mongoose'
+import { Mockngoose } from 'mongoose'
 import fileupload from 'express-fileupload'
 import "dotenv/config"
 import myRouter from './API/router/routes'
@@ -17,10 +18,20 @@ app.use(fileupload({useTempFiles:true}))
 const url = process.env.DB_CONFIG;
 app.use('/api/v1', myRouter)
 
-mongoose.connect( url, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () =>{
+if(process.env.NODE_ENV === 'test'){
+const Mockngoose = new Mockngoose(mongoose);
+mockngoose.prepareStorage().then(() => {
+    mongoose.connect( url, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () =>{
     console.log("connected to mongodb")
+});
+})
+} else{
+mongoose.connect( url, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () =>{
+    console.log("connected to mongodb cool")
     
 });
+}
+
 
 app.listen( PORT, ()=> {
     console.log(`server is running on ${PORT}...`)
