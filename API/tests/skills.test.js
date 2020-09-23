@@ -47,18 +47,20 @@ describe('The skills test', ()=>{
          .set('Content-Type', 'multipart/form-data')
          .field("name","mongoDb")
          .attach("skillImage", fs.readFileSync("images/how I get into Andela.jpg"))
-         .end((err, res) =>{
+         .then((res) =>{
              expect(res).have.status([201])
-        done(err)
+         done()
          })
+         .catch((err) => done(err))
     })
     it("it should get all  skills ", (done) => {
         chai.request(app)
          .get('/api/v1/skills')
-         .end((err, res) =>{
+         .then((res) =>{
              expect(res).have.status([200])
              expect(res.body).have.property("data")
-        done(err)
+         done()
          })
+         .catch((err) => done(err))
     })
 })
