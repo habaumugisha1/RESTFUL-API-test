@@ -57,6 +57,7 @@ describe('The skills test', ()=>{
          .get('/api/v1/skills')
          .end((err, res) =>{
              expect(res).have.status([200])
+             expect(res.body).have.property("data")
         done(err)
          })
     })
