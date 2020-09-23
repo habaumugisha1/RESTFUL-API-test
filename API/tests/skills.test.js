@@ -14,6 +14,7 @@ describe('The skills test', ()=>{
          .set('Authorization', `Bearer ${damyData.userToken}`)
          .send({neme:"HTML", skillImage:"hhfksafhaskhflaskdhfalk"})
         //  .then((res) =>{
+            console.log(res.body)
         // expect(res).have.status([403]);
         expect(res.body).have.property("message");
         expect(res.body.message).to.equals("Only admin is allowed")
@@ -53,6 +54,7 @@ describe('The skills test', ()=>{
          .attach("skillImage", fs.readFileSync("images/how I get into Andela.jpg"), "how I get into Andela.jpg")
         //  .then(res =>{
         // expect(res).have.status([201])
+        console.log(res.body)
         expect(res.body).have.property("data")
         expect(res.body).have.property("message")
              
