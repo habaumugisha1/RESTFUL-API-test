@@ -48,7 +48,6 @@ export default {
         email:"habajeunes@gmail.com",
         password: "sekera234"
     },
-    admin: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjViMTA1NGYwODIzNDFjZTgxNzRjZGYiLCJlbWFpbCI6ImhhYmFqZXVuZXMyQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYwMDI2OTA2MX0.9vCXgdQOirqKuGE2ZGz-a8wdfUIyVdXCrzvKZL5ePeo",
     loginWithoutEmail:{
         password: "sekera"
     },

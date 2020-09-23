@@ -35,7 +35,7 @@ describe('The skills test', ()=>{
         chai.request(app)
          .post('/api/v1/addSkills')
          .set('Authorization', `Bearer ${damyData.emptyToken}`)
-         .send({name:"make tokens",killImage:"hhfksafhaskhflaskdhfalk"})
+         .send({name:"make tokens",skillImage:"hhfksafhaskhflaskdhfalk"})
          .end((err, res) =>{
              expect(res).have.status([400])
              expect(res.body).have.property("error")
@@ -49,9 +49,12 @@ describe('The skills test', ()=>{
          .set('Authorization', `Bearer ${damyData.userAdminToken}`)
          .set('Content-Type', 'multipart/form-data')
          .field("name","mongoDb")
-         .attach("skillImage", fs.readFileSync("images/how I get into Andela.jpg"))
+         .attach("skillImage", fs.readFileSync("images/how I get into Andela.jpg"), "how I get into Andela.jpg")
          .then((res) =>{
              expect(res).have.status([201])
+             expect(res.body).have.property("data")
+             expect(res.body).have.property("message")
+             
          done()
          })
          .catch((err) => done(err))
@@ -66,4 +69,4 @@ describe('The skills test', ()=>{
          })
          .catch((err) => done(err))
     })
-})
+});
