@@ -12,10 +12,13 @@ describe('The skills test', ()=>{
          .post('/api/v1/addSkills')
          .set('Authorization', `Bearer ${damyData.userToken}`)
          .send({neme:"HTML", skillImage:"hhfksafhaskhflaskdhfalk"})
-         .end((err, res) =>{
-             expect(res).have.status([403])
-        done(err)
+         .then((res) =>{
+             expect(res).have.status([403]);
+             expect(res.body).have.property("message");
+             expect(res.body.message).to.equals("Only admin is allowed")
+         done()
          })
+         .catch((err) => done(err))
     })
 
      it("it should not create skills without name", (done) => {
