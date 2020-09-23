@@ -1,14 +1,14 @@
-import chai, {expect} from 'chai'
+import {use, request, expect} from 'chai'
 import chaiHttp from 'chai-http'
 import fs from 'fs'
 import app from '../../index'
 import damyData from './damyData'
 
-chai.use(chaiHttp)
+use(chaiHttp)
 
 describe('The skills test', ()=>{
     it("it should not create skills if user is not admin", async () => {
-       const res = await chai.request(app)
+       const res = await request(app)
          .post('/api/v1/addSkills')
          .set('Authorization', `Bearer ${damyData.userToken}`)
          .send({neme:"HTML", skillImage:"hhfksafhaskhflaskdhfalk"})
@@ -22,7 +22,7 @@ describe('The skills test', ()=>{
     })
 
      it("it should not create skills without name", (done) => {
-        chai.request(app)
+        request(app)
          .post('/api/v1/addSkills')
          .set('Authorization', `Bearer ${damyData.userAdminToken}`)
          .send({skillImage:"hhfksafhaskhflaskdhfalk"})
@@ -32,7 +32,7 @@ describe('The skills test', ()=>{
          })
     })
     it("it should not create skills without token", (done) => {
-        chai.request(app)
+        request(app)
          .post('/api/v1/addSkills')
          .set('Authorization', `Bearer ${damyData.emptyToken}`)
          .send({name:"make tokens",skillImage:"hhfksafhaskhflaskdhfalk"})
@@ -44,7 +44,7 @@ describe('The skills test', ()=>{
     })
 
     it("it should create skills without error", async () => {
-      const res = await chai.request(app)
+      const res = await request(app)
          .post('/api/v1/addSkills')
          .set('Authorization', `Bearer ${damyData.userAdminToken}`)
          .set('Content-Type', 'multipart/form-data')
@@ -60,7 +60,7 @@ describe('The skills test', ()=>{
         //  .catch((err) => done(err))
     })
     it("it should get all  skills ", async () => {
-       const res = await chai.request(app)
+       const res = await request(app)
          .get('/api/v1/skills')
         //  .then(res =>{
         expect(res).have.status([200])
