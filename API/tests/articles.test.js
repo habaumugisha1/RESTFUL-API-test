@@ -1,3 +1,4 @@
+process.env.NODE_ENV ='test'
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import fs from 'fs'

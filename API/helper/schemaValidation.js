@@ -11,6 +11,10 @@ export default {
           title:joi.string().min(5).required(),
           articleImage:joi.string(),
           description:joi.string().required()
+        }),
+        skill : joi.object().keys({
+          name:joi.string().min(3).required(),
+          skillImage:joi.string()
         })
        
     },
