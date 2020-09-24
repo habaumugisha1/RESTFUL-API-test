@@ -3,19 +3,20 @@ import {use, request, expect} from 'chai'
 import chaiHttp from 'chai-http'
 import fs from 'fs'
 import mongoose from 'mongoose'
+import "dotenv/config"
 import app from '../../index'
 import damyData from './damyData'
 
 use(chaiHttp)
-const url = process.env.DB_CONFIG;
+const uri = process.env.DB_CONFIG;
 describe('The skills test', ()=>{
     before((done) => {
-        mongoose.connect( url, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () => done())
+        mongoose.connect( uri, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () => done())
         .catch((err) => done(err))
     })
 
     after((done) => {
-        mongoose.disconnect( url, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () => done())
+        mongoose.disconnect( uri, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () => done())
         .catch((err) => done(err))
     })
 
