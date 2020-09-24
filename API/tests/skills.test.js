@@ -10,15 +10,15 @@ import damyData from './damyData'
 use(chaiHttp)
 const uri = process.env.DB_CONFIG;
 describe('The skills test', ()=>{
-    before((done) => {
-        mongoose.connect( uri, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () => done())
-        .catch((err) => done(err))
-    })
+    // before((done) => {
+    //     mongoose.connect( uri, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () => done())
+    //     .catch((err) => done(err))
+    // })
 
-    after((done) => {
-        mongoose.disconnect( uri, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () => done())
-        .catch((err) => done(err))
-    })
+    // after((done) => {
+    //     mongoose.disconnect( uri, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () => done())
+    //     .catch((err) => done(err))
+    // })
 
     it("it should not create skills if user is not admin", async() => {
         const res = await request(app)
