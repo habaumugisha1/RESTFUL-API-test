@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import "dotenv/config"
 import app from '../../index'
 import damyData from './damyData'
-
+dotenv.config();
 use(chaiHttp)
 const uri = process.env.DB_CONFIG;
 describe('The skills test', ()=>{
