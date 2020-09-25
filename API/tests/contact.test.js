@@ -4,6 +4,7 @@ import chaiHttp from 'chai-http'
 import server from '../../index'
 import mongoose from 'mongoose'
 import Contacts from "../models/contact";
+import damyData from './damyData'
 
 chai.should()
 chai.use(chaiHttp)
@@ -57,6 +58,40 @@ describe('Contacts', () => {
                     
                 })
                 done();
+        })
+
+        it('It should get contact message if is admin', (done) =>{
+            
+            chai.request(server)
+                .get('/api/v1/contacts')
+                .set('Authorization', `Bearer ${damyData.userAdminToken}`)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    done();
+                })
+        })
+        it('It should not get contact message if is not admin', (done) =>{
+            
+            chai.request(server)
+                .get('/api/v1/contacts')
+                .set('Authorization', `Bearer ${damyData.userToken}`)
+                .end((err, res) => {
+                    console.log(err)
+                    res.should.have.status(403);
+                    done();
+                })
+        })
+        it('It should not get contact message if is not no token', (done) =>{
+            
+            chai.request(server)
+                .get('/api/v1/contacts')
+                .set('Authorization', `Bearer ${damyData.emptyToken}`)
+                .end((err, res) => {
+                    console.log(err)
+                    res.should.have.status(400);
+                    done();
+                })
         })
     })
 })

@@ -1,6 +1,7 @@
 import express from 'express'
 import Articles from '../models/article'
 import cloudinary from 'cloudinary'
+import Comments from '../models/comment'
 
 
 import cloudinaConfig from '../middleware/cloudinary'
@@ -65,9 +66,15 @@ import cloudinaConfig from '../middleware/cloudinary'
 //single Blog
    static singleBlog(req, res){
      const articleId = req.params.id;
-     Articles.findById(req.params.id, (err, results) =>{
-       if(!results) return res.status(404).json({status:404, message:`No article found with this id ${articleId}`})
-       res.status(200).json({status:200, results})
+     Articles.findById(req.params.id, async (err, results) =>{
+       if(!results) return res.status(404).json({status:404, message:`No article found with this id ${articleId}`});
+       const count = [];
+       await Comments.find({articleId:results._id}, (err, comment) => {
+        //  Comments.estimatedDocumentCount({}, (count))
+           count.push(comment);
+           console.log(count)
+       res.status(200).json({status:200, results, comments:{number:count[0].length,comment}})
+       })
      })
     
      
