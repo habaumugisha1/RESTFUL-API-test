@@ -15,8 +15,11 @@ export default {
         skill : joi.object().keys({
           name:joi.string().min(3).required(),
           skillImage:joi.string()
-        })
-       
+        }),
+        comment: joi.object().keys({
+          name:joi.string().required(),
+          description:joi.string().required()
+     })
     },
     
     isValid : (schema) => {
