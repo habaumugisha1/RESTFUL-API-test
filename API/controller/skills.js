@@ -7,7 +7,7 @@ class Skill {
         console.log("we are in skills controller")
         cloudinary.config(cloudinaryConfig)
         const file = req.files.skillImage
-        cloudinary.uploader.upload(file.tempFilePath, async (results, err) =>{
+        cloudinary.uploader.upload(file.tempFilePath, async (results) =>{
 
           const my_skills = new Skills({
               name:req.body.name,
@@ -55,7 +55,7 @@ class Skill {
         })
     }
 
-    // delete a skill by admin
+    // update a skill by admin
     static async updatekills(req, res){
         const skillId = req.params.id;
         await Skills.findById(skillId, async (err, results) =>{

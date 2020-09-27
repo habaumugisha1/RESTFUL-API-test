@@ -19,7 +19,7 @@ const url = process.env.DB_CONFIG;
 app.use('/api/v1', myRouter)
 
 if(process.env.NODE_ENV === 'test'){
-const Mockgoose = new Mockgoose(mongoose);
+const mockgoose = new Mockgoose(mongoose);
 mockgoose.prepareStorage().then(() => {
     mongoose.connect( url, { useNewUrlParser: true,  useUnifiedTopology: true}).then( () =>{
     console.log("connected to mongodb")
