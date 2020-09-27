@@ -1,4 +1,5 @@
 import joi from '@hapi/joi'
+import { required } from 'joi';
 
 export default {
     schema : {
@@ -19,6 +20,12 @@ export default {
         comment: joi.object().keys({
           name:joi.string().required(),
           description:joi.string().required()
+     }),
+     project:joi.object().keys({
+       title:joi.string().required(),
+       hostedLink:joi.string(),
+       projectImage:joi.string(),
+       description:joi.string().required()
      })
     },
     

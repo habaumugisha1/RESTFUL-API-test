@@ -7,6 +7,7 @@ import Authorize from  '../middleware/authorization'
 import uploadImage from '../middleware/uploadImage'
 import Skill from '../controller/skills'
 import Comment from '../controller/comments'
+import Project from '../controller/project'
 
 
 const router = express.Router()
@@ -36,5 +37,11 @@ router.get('/skills', Skill.getSkills)
 router.get('/skills/:id', Skill.singleSkill);
 router.delete('/skills/:id/delete', Authorize.isAdmin, Skill.deleteSkills);
 router.patch('/skills/:id/edit', Authorize.isAdmin, Skill.updatekills)
+
+// create project
+router.post('/newProject', Authorize.isAdmin, validation.isValid(validation.schema.project), Project.createProject)
+router.get('/projects', Project.getProject)
+router.delete('/projects/:id/delete', Authorize.isAdmin, Project.deleteProject)
+router.patch('/projects/:id/edit', Authorize.isAdmin, Project.updateProject)
 
 export default router
