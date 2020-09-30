@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import { Mockgoose } from 'mockgoose'
 import fileupload from 'express-fileupload'
 import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from './swagger.json'
+// import swaggerDocument from './swagger.json'
 import "dotenv/config"
 import myRouter from './API/router/routes'
 
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(fileupload({useTempFiles:true}))
 
 // configuring swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const url = process.env.DB_CONFIG;
 app.use('/api/v1', myRouter)
