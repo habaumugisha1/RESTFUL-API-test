@@ -35,7 +35,7 @@ import cloudinaConfig from '../middleware/cloudinary'
 
       await article.save((err, data)=>{
           if(err){
-           return console.log(err.message + " which errors")
+           console.log(err.message + " which errors")
           }
           return res.status(201).json({
             status:201,

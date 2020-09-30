@@ -20,7 +20,18 @@ it("should not create article if no title provided", (done) => {
         done(error)
     })
 })
-
+it("should not create article if is not admin", (done) => {
+    chai.request(app)
+    .post('/api/v1/newArticle')
+    .set('Authorization', `Bearer ${damyData.userToken}`)
+    .field('title', 'franklin')
+    .attach('articleImage',fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+    .field('description', 'testing files')
+    .end((error, res) => {
+        expect(res).to.have.status([403]);
+        done(error)
+    })
+})
 it("should create article", (done) => {
     chai.request(app)
     .post('/api/v1/newArticle')

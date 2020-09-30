@@ -4,10 +4,10 @@ import ContactMessag from '../controller/contact';
 import Article from '../controller/article'
 import validation from '../helper/schemaValidation'
 import Authorize from  '../middleware/authorization'
-import uploadImage from '../middleware/uploadImage'
 import Skill from '../controller/skills'
 import Comment from '../controller/comments'
 import Project from '../controller/project'
+import Profile from '../controller/profile'
 
 
 const router = express.Router()
@@ -44,4 +44,6 @@ router.get('/projects', Project.getProject)
 router.delete('/projects/:id/delete', Authorize.isAdmin, Project.deleteProject)
 router.patch('/projects/:id/edit', Authorize.isAdmin, Project.updateProject)
 
+// user profile
+router.get('/profile', Authorize.isAdmin, Profile.getProfile)
 export default router
