@@ -4,6 +4,8 @@ import cloudinaryConfig from '../middleware/cloudinary'
 
 class Project{
 static async createProject(req, res){
+    try {
+        
    const project =  await Projects.find({title:req.body.title})
 
         if(project.length >=1 ) return res.status(409).json({status:409, message:"This project is already exist"});
@@ -26,6 +28,9 @@ static async createProject(req, res){
                 
             })
         }
+    } catch (error) {
+        console.log(error.message)
+    }
       
 }
 

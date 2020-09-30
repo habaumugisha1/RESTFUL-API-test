@@ -30,18 +30,19 @@ describe("project tests", () => {
       .send({title:"The Free Mentors", projectImage:"fhdkyddhgdccxx,c",hostedLink:"hfgwshgfjsahf", description:"jfgjhgrfuqwertwyertgwq"})
       expect(res).to.have.status([409])
     })
-    it('It should create project', async () => {
-      const res = await request(app)
-      .post('/api/v1/newProject')
-      .set('Authorization', `Beare ${damyData.userAdminToken}`)
-      .set('Content-Type', 'multipart/form-data')
-        .field('title', 'franklin')
-        .attach('projectImage',fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
-        .field('hostedLink', 'testing nvjjvjhvjfiles')
-        .field('description', 'testing files')
-      expect(res).to.have.status([409])
-      expect(res.body).to.have.property('message')
-    })
+
+    // it('It should create project', async () => {
+    //   const res = await request(app)
+    //   .post('/api/v1/newProject')
+    //   .set('Authorization', `Beare ${damyData.userAdminToken}`)
+    //   .set('Content-Type', 'multipart/form-data')
+    //     .field('title', 'franklins and thers author write onblogs')
+    //     .attach('projectImage',fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+    //     .field('hostedLink', 'testing nvjjvjhvjfiles')
+    //     .field('description', 'testing files')
+    //   expect(res).to.have.status([201])
+    //   expect(res.body).to.have.property('message')
+    // })
   it("it should get all  project ", async () => {
        const res = await request(app)
          .get('/api/v1/projects')
@@ -74,9 +75,9 @@ describe("project tests", () => {
           let project = new Projects({title: "The Chronicles of Narnia", description: "C.S. Lewis", hostedLink: "hfgjhgfdbdsfb"})
           project.save( async(err, pro) => {
             const res =  await request(app)
-            .patch('/api/v1/projects/6y7jf/update')
-            .send(project)
+            .patch('/api/v1/projects/6y7jf/edit')
             .set('Authorization', `Beare ${damyData.userAdminToken}`)
+            .send({title: "The Chronicles of Narnia", description: "C.S. Lewis and come again", hostedLink: "hfgjhgfdbdsfb//jandg"})
                 expect(res).to.have.status([404])
 
           })
@@ -86,11 +87,30 @@ describe("project tests", () => {
           let project = new Projects({title: "The Chronicles of Narnia", description: "C.S. Lewis", hostedLink: "hfgjhgfdbdsfb"})
           project.save( async(err, pro) => {
             const res =  await request(app)
-            .patch('/api/v1/projects/' + pro.id + '/update')
-            .send(project)
+            .patch('/api/v1/projects/' + pro.id + '/edit')
             .set('Authorization', `Beare ${damyData.userAdminToken}`)
+            .field('title', 'franklins and thers author')
+        
+            .field('hostedLink', 'testing nvjjvjhvjfiles')
+            .field('description', 'testing files')
+
                 expect(res).to.have.status([200])
 
           })
      })
+
+     it('it should update a project given the id ', () => {
+          let project = new Projects({title: "The Chronicles of Narnia", description: "C.S. Lewis", hostedLink: "hfgjhgfdbdsfb"})
+          project.save( async(err, pro) => {
+            const res =  await request(app)
+            .patch('/api/v1/projects/' + pro.id + '/edit')
+            .set('Authorization', `Beare ${damyData.userAdminToken}`)
+            .attach('projectImage',fs.readFileSync('images/how I get into Andela.jpg'), 'how I get into Andela.jpg')
+
+                expect(res).to.have.status([200])
+                expect(res.body).have.property("message")
+
+          })
+     })
+     
 })
