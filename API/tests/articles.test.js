@@ -62,7 +62,7 @@ it('It should get all articles', (done) =>{
 it('It should get an article if is not exist', (done) =>{
             
             chai.request(app)
-                .get('/api/v1/blogs/61')
+                .get('/api/v1/blogs/5f69e164abf8fe1601000198')
                 .end((error, res) => {
                     expect(res).to.have.status([404]);
                     expect(res.body).to.have.property('status');
@@ -102,7 +102,7 @@ it('It should not delete single article if not found', (done) =>{
                         article.save( (err, art) => {
 
                    chai.request(app)
-                        .delete(`/api/v1/blogs/6`)
+                        .delete(`/api/v1/blogs/5f69e164abf8fe1601000000`)
                         .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                         .end((error, res) => {
                             expect(res).to.have.status([404]);
@@ -142,7 +142,7 @@ it('It should not update single article if not found ', (done) =>{
                     article.save( (err, art) => {
 
                     chai.request(app)
-                        .put(`/api/v1/blogs/7/edit`)
+                        .put(`/api/v1/blogs/5f69e164abf8fe1601000190/edit`)
                         .set('Authorization', `Bearer ${damyData.userAdminToken}`)
                         .end((error, res) => {
                             expect(res).to.have.status([404]);
