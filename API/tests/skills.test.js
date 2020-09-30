@@ -37,9 +37,8 @@ describe('The skills test', ()=>{
         await skill.save( async (err, data) => {
 
        const res = await request(app)
-         .delete(`/api/v1/skill/2/delete`)
+         .delete(`/api/v1/skills/5f69e164abf8fe1601000195/delete`)
          .set('Authorization', `Bearer ${damyData.userAdminToken}`)
-         console.log(data)
         expect(res).have.status(404)
         expect(res.body).have.property("message")
         })
@@ -50,7 +49,7 @@ describe('The skills test', ()=>{
         let skill = new Skills({name:"communication", skillImage:"dfjhgdfgadjfgjadgf"})
         await skill.save( async (err, data) => {
        const res = await request(app)
-         .patch(`/api/v1/skills/3/edit`)
+         .patch(`/api/v1/skills/5f69e164abf8fe1601000195/edit`)
          .set('Authorization', `Bearer ${damyData.userAdminToken}`)
         expect(res).have.status([404])
         expect(res.body).have.property("message")
@@ -89,7 +88,6 @@ it("it should  delete a single skill if exist", async () => {
        const res = await request(app)
          .delete(`/api/v1/skills/${data.id}/delete`)
          .set('Authorization', `Bearer ${damyData.userAdminToken}`)
-         .attach("skillImage", fs.readFileSync("images/how I get into Andela.jpg"), "how I get into Andela.jpg")
         expect(res).have.status([200])
         expect(res.body).have.property("message")
         })
@@ -114,14 +112,14 @@ it("it should  delete a single skill if exist", async () => {
           expect(res).have.status([400])
     })
 
-    it("it should not create skills without token", async () => {
-        const res = await request(app)
-         .post('/api/v1/addSkills')
-         .set('Authorization', `Bearer ${damyData.emptyToken}`)
-         .send({name:"make tokens",skillImage:"hhfksafhaskhflaskdhfalk"})
-             expect(res).have.status([400])
-             expect(res.body).have.property("error")
-    })
+    // it("it should not create skills without token", async () => {
+    //     const res = await request(app)
+    //      .post('/api/v1/addSkills')
+    //      .set('Authorization', `Bearer ${damyData.emptyToken}`)
+    //      .send({name:"make tokens",skillImage:"hhfksafhaskhflaskdhfalk"})
+    //          expect(res).have.status([400])
+    //          expect(res.body).have.property("error")
+    // })
 
     it("it should create skills without error", async () => {
         const res = await request(app)
@@ -148,7 +146,7 @@ it("it should  delete a single skill if exist", async () => {
         skill.save( async (err, data) => {
 
        const res = await request(app)
-         .get(`/api/v1/skills/10`)
+         .get(`/api/v1/skills/5f69e164abf8fe1601000195`)
         expect(res).have.status([404])
         expect(res.body).have.property("message")
         })

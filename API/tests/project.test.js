@@ -54,7 +54,7 @@ describe("project tests", () => {
           let project = new Projects({title: "The Chronicles of Narnia", description: "C.S. Lewis", hostedLink: "hfgjhgfdbdsfb"})
           project.save( async(err, prject) => {
             const res =  await request(app)
-            .delete('/api/v1/projects/5fgtru/delete')
+            .delete('/api/v1/projects/5f69e164abf8fe1601000195/delete')
             .set('Authorization', `Beare ${damyData.userAdminToken}`)
                 expect(res).to.have.status([404])
 
@@ -75,7 +75,7 @@ describe("project tests", () => {
           let project = new Projects({title: "The Chronicles of Narnia", description: "C.S. Lewis", hostedLink: "hfgjhgfdbdsfb"})
           project.save( async(err, pro) => {
             const res =  await request(app)
-            .patch('/api/v1/projects/6y7jf/edit')
+            .patch('/api/v1/projects/5f69e164abf8fe1601000195/edit')
             .set('Authorization', `Beare ${damyData.userAdminToken}`)
             .send({title: "The Chronicles of Narnia", description: "C.S. Lewis and come again", hostedLink: "hfgjhgfdbdsfb//jandg"})
                 expect(res).to.have.status([404])
