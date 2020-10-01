@@ -74,6 +74,7 @@ describe('Authentication', () => {
                 .post('/api/v1/auth/signup')
                 .send(damyData.signupErrorOfHasPassword)
                 .then((err, res) => {
+                    console.log(res)
                     res.should.have.status(500);
                 
                     })
@@ -119,6 +120,7 @@ describe('Authentication', () => {
                     password: "sekera"
                 })
                 .then((err, res) => {
+                    console.log(res + 'responce')
                     res.should.have.status(404);
 
                 })
